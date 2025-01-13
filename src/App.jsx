@@ -1,9 +1,12 @@
 import React from "react";
+import FirstPage from "./components/FirstPage.jsx";
+import LandingPage from "./LandingPage.jsx";
 
 const App = () => {
   return (
     <div className="">
-      <h1 className="text-5xl font-extrabold text-red-400">AspirationTrail</h1>
+      {/* <FirstPage /> */}
+      <LandingPage />
     </div>
   );
 };
