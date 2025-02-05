@@ -1,35 +1,38 @@
-import * as React from "react";
-import Header from "./components/Header";
-import StatCard from "./components/StatCard";
-import HowItWorksCard from "./components/HowItWorksCard";
-import ContactForm from "./components/ContactForm";
-import Footer from "./components/Footer";
+import * as React from 'react';
+import Header from './components/Header';
+import StatCard from './components/StatCard';
+import HowItWorksCard from './components/HowItWorksCard';
+import ContactForm from './components/ContactForm';
+import Footer from './components/Footer';
+import { Button } from '@material-tailwind/react';
+import { gsap } from 'gsap';
+
 
 const stats = [
-  { number: "15K+", label: "Number of students" },
-  { number: "75%", label: "Percentage of success", highlighted: true },
-  { number: "35", label: "Numbers of questions" },
-  { number: "25+", label: "Number of experts", highlighted: true },
-  { number: "15+", label: "Years of experience" },
+  { number: '15K+', label: 'Number of students' },
+  { number: '75%', label: 'Percentage of success', highlighted: true },
+  { number: '35', label: 'Numbers of questions' },
+  { number: '25+', label: 'Number of experts', highlighted: true },
+  { number: '15+', label: 'Years of experience' },
 ];
 
 const howItWorksSteps = [
   {
-    title: "Sign Up",
+    title: 'Sign Up',
     description:
-      "Montes vivamus curae quisque et primis pretium nullam. Congue dis convallis eget ipsum cubilia ante.",
+      'Montes vivamus curae quisque et primis pretium nullam. Congue dis convallis eget ipsum cubilia ante.',
   },
   {
-    title: "Get access",
-    description: "Access to question bank of over 2000 questions",
+    title: 'Get access',
+    description: 'Access to question bank of over 2000 questions',
   },
   {
-    title: "Practice questions",
+    title: 'Practice questions',
     description:
-      "Prepare for the MLA exam in multiple modes of revision and track your progress with your personalised dashboard",
+      'Prepare for the MLA exam in multiple modes of revision and track your progress with your personalised dashboard',
   },
   {
-    title: "Get Result",
+    title: 'Get Result',
     description:
       "compare your results with your peers' with advanced analytics",
   },
@@ -37,10 +40,14 @@ const howItWorksSteps = [
 
 export default function LandingPage() {
   return (
-    <div className="flex overflow-hidden flex-col items-center bg-white">
-      <Header />
-
-      <div className="mt-20 w-full max-w-[1555px] max-md:mt-10 max-md:max-w-full">
+    <div
+      className="flex overflow-hidden flex-col items-center bg-white p-3"
+      id="main"
+    >
+      <div
+        className="mt-20 w-full max-w-[1555px] max-md:mt-10 max-md:max-w-full"
+        id="HomePage"
+      >
         <div className="flex gap-5 max-md:flex-col">
           <div className="flex flex-col w-[55%] max-md:ml-0 max-md:w-full">
             <div className="flex flex-col self-stretch my-auto text-lg max-md:mt-10 max-md:max-w-full">
@@ -54,9 +61,12 @@ export default function LandingPage() {
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s.
               </p>
-              <button className="self-start px-14 py-5 mt-24 font-medium text-white bg-teal-800 rounded-[257px] shadow-[0px_6px_17px_rgba(36,93,81,0.25)] max-md:px-5 max-md:mt-10">
+              <Button
+                id="joinButton"
+                className="self-start px-14 py-5 mt-24 font-medium text-white bg-teal-800 rounded-[257px] shadow-[0px_6px_17px_rgba(36,93,81,0.25)] max-md:px-5 max-md:mt-10"
+              >
                 Join Now
-              </button>
+              </Button>
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/eced358cfd65b26e4563044f5dfdebc3be6d2ccd8a62cabd8756144c79b8d67f?placeholderIfAbsent=true&apiKey=e6d253afa5f042568e5e89e014ee427d"
@@ -98,7 +108,7 @@ export default function LandingPage() {
           <StatCard key={index} {...stat} />
         ))}
       </div>
-
+      {/* 
       <div className="flex flex-col justify-center items-center self-stretch px-20 py-12 mt-24 w-full bg-teal-800 max-md:px-5 max-md:mt-10 max-md:max-w-full">
         <div className="flex flex-col items-center w-full max-w-[1581px] max-md:max-w-full">
           <h2 className="ml-5 text-4xl font-semibold leading-none text-white">
@@ -111,11 +121,11 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-          <button className="px-12 py-4 mt-12 ml-5 max-w-full text-lg font-medium text-white border-2 border-white border-solid rounded-[257px] shadow-[0px_6px_17px_rgba(84,90,232,0.25)] w-[183px] max-md:px-5 max-md:mt-10">
+          <Button className="px-12 py-4 mt-12 ml-5 max-w-full text-lg font-medium text-white border-2 border-white border-solid rounded-[257px] shadow-[0px_6px_17px_rgba(84,90,232,0.25)] w-[183px] max-md:px-5 max-md:mt-10">
             Start Now
-          </button>
+          </Button>
         </div>
-      </div>
+      </div> */}
 
       <div className="mt-24 ml-2.5 w-full max-w-[1327px] max-md:mt-10 max-md:max-w-full">
         <div className="flex gap-5 max-md:flex-col">
@@ -132,8 +142,6 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }
