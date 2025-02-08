@@ -1,9 +1,12 @@
-import { Button } from '@material-tailwind/react';
-import * as React from 'react';
+import { Button } from "@material-tailwind/react";
+import * as React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
+
   return (
-    <header className=" flex flex-wrap p-2 gap-5 justify-between w-full max-w-[1620px] max-md:max-w-full">
+    <header className=" flex flex-wrap px-6 py-4 gap-5 justify-between w-full">
       <div className="flex gap-2 my-auto text-2xl font-bold text-black">
         <img
           loading="lazy"
@@ -26,7 +29,10 @@ export default function Header() {
           alt=""
           className="object-contain shrink-0 self-stretch my-auto aspect-square w-[18px]"
         /> */}
-        <Button className="self-stretch  text-white text-center whitespace-nowrap bg-teal-800 rounded-[257px] max-md:px-5">
+        <Button
+          className="self-stretch  text-white text-center whitespace-nowrap bg-teal-800 rounded-[257px] max-md:px-5"
+          onClick={() => navigate("/login")}
+        >
           Login
         </Button>
       </nav>
