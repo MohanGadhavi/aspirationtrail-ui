@@ -1,12 +1,11 @@
 import * as React from 'react';
-import Header from './components/Header';
-import StatCard from './components/StatCard';
-import HowItWorksCard from './components/HowItWorksCard';
-import ContactForm from './components/ContactForm';
-import Footer from './components/Footer';
+import Header from './Header';
+import StatCard from './StatCard';
+import HowItWorksCard from './HowItWorksCard';
+import ContactForm from './ContactForm';
+import Footer from './Footer';
 import { Button } from '@material-tailwind/react';
 import { gsap } from 'gsap';
-
 
 const stats = [
   { number: '15K+', label: 'Number of students' },
