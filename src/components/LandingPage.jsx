@@ -51,14 +51,14 @@ export default function LandingPage() {
           <div className="flex flex-col w-[55%] max-md:ml-0 max-md:w-full">
             <div className="flex flex-col self-stretch my-auto text-lg max-md:mt-10 max-md:max-w-full">
               <h1 className="text-6xl font-semibold text-black leading-[62px] max-md:max-w-full max-md:text-4xl max-md:leading-10">
-                Take student
+                Discover Your Path to
                 <br />
-                experience to the next level
+                Success!
+                {/* experience to the next level */}
               </h1>
-              <p className="mt-5 leading-7 text-zinc-600 max-md:mr-2.5 max-md:max-w-full">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s.
+              <p className="mt-5 text-xl leading-7">
+                Unlock personalized career roadmaps, track your progress, and
+                achieve your dreams with guidance tailored just for you.
               </p>
               <Button
                 id="joinButton"
