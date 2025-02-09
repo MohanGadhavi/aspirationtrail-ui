@@ -49,15 +49,13 @@ function Login() {
         password: values.password,
         termsAndCondtion: values.acceptTerms,
       };
-      console.log('loginPayloaf::: ', payload);
+      console.log('loginPayload::: ', payload);
 
       try {
         const response = await api.post('/user/login', payload);
-
         const token = response.data.token;
         // Save token in localStorage
-        localStorage.setItem('authToken', response.data.token);
-
+        localStorage.setItem('authToken', token);
         // Dispatch login success
         dispatch(loginSuccess(response.data.user));
 

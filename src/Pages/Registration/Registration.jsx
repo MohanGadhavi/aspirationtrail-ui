@@ -45,28 +45,6 @@ function Registration() {
         .oneOf([true], 'You must accept the terms and conditions')
         .required('Required'),
     }),
-    // onSubmit: async (values, { setSubmitting, setFieldError }) => {
-    //   console.log('values: ', values);
-    //   try {
-    //     const formData = new FormData();
-    //     Object.entries(v&&alues).forEach(([key, value]) => {
-    //       formData.append(key, value);
-    //     });
-    //     await api
-    //       .post('/user/register', formData)
-    //       .then((res) => {
-    //         console.log(res);
-
-    //         navigate('/login');
-    //       })
-    //       .catch((err) => console.log(err));
-    //   } catch (error) {
-    //     setFieldError('general', 'Registration failed');
-    //   } finally {
-    //     setSubmitting(false);
-    //   }
-    // },
-
     onSubmit: async (values, { setSubmitting, setFieldError }) => {
       console.log('values: ', values);
       try {
