@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import api from './utils/api.js';
-import Header from './components/Header.jsx';
 import Login from './Pages/Login/Login.jsx';
 import ProtectedRoute from './Routes/ProtectedRoute.jsx';
 import { loginSuccess, logout } from './store/auth.js';
 import LandingPage from './Pages/LandingPage/index.jsx';
 import Home from './Pages/Home/index.jsx';
+import Registration from './Pages/Registration/Registration.jsx';
 import Mentor from './Pages/Mentor/Mentor.jsx';
 
 const App = () => {
@@ -47,7 +47,6 @@ const App = () => {
   return (
     <div>
       <Routes>
-        
         <Route
           index
           path="/"
@@ -59,8 +58,9 @@ const App = () => {
             )
           }
         />
-        <Route path="/welcome" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/welcome" element={<LandingPage />} />
         <Route
           path="/home"
           element={
