@@ -1,17 +1,75 @@
-import React from 'react';
+import React, { Suspense, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import {
-  Card,
-  Input,
-  Button,
-  Typography,
-  Select,
-  Option,
-  Checkbox,
-} from '@material-tailwind/react';
-import { useNavigate } from 'react-router-dom';
+import { Card, Button } from '@material-tailwind/react';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../../utils/api.js';
+import register_page_img from '../../assets/register_page_img.jpg';
+import FieldBuilder from '../../components/Core/FieldBuilder';
+const fields = [
+  {
+    label: 'User type',
+    name: 'userType',
+    type: 'select',
+    options: [
+      {
+        value: 'user',
+        name: 'User',
+      },
+      {
+        value: 'admin',
+        name: 'Admin',
+      },
+      {
+        value: 'admin',
+        name: 'Mentor',
+      },
+    ],
+  },
+  {
+    label: 'Username',
+    name: 'userName',
+    type: 'text',
+  },
+  {
+    label: 'First Name',
+    name: 'firstName',
+    type: 'text',
+  },
+  {
+    label: 'Last Name',
+    name: 'lastName',
+    type: 'text',
+  },
+  {
+    label: 'Email',
+    name: 'email',
+    type: 'email',
+  },
+  {
+    label: 'Phone',
+    name: 'phone',
+    type: 'tel',
+    maxLength: 10,
+  },
+  {
+    label: 'Password',
+    name: 'password',
+    type: 'password',
+    cols: 2,
+  },
+  {
+    label: (
+      <p>
+        I agree to the
+        <a className="">Terms and Conditions</a>
+      </p>
+    ),
+    name: 'acceptTerms',
+    type: 'checkbox',
+    cols: 2,
+  },
+];
 
 function Registration() {
   const navigate = useNavigate();
@@ -33,17 +91,17 @@ function Registration() {
       firstName: Yup.string().required('First name is required'),
       lastName: Yup.string().required('Last name is required'),
       email: Yup.string()
-        .email('Invalid email address')
-        .required('Email is required'),
+        .required('Email is required')
+        .email('Invalid email address'),
       phone: Yup.string()
-        .matches(/^\d{10}$/, 'Phone number must be 10 digits')
-        .required('Phone number is required'),
+        .required('Phone number is required')
+        .matches(/^\d{10}$/, 'Phone number must be 10 digits'),
       password: Yup.string()
-        .min(6, 'Password must be at least 6 characters')
-        .required('Password is required'),
+        .required('Password is required')
+        .min(8, 'Password must be at least 8 characters'),
       acceptTerms: Yup.boolean()
-        .oneOf([true], 'You must accept the terms and conditions')
-        .required('Required'),
+        .required('Required')
+        .oneOf([true], 'You must accept the terms and conditions'),
     }),
     onSubmit: async (values, { setSubmitting, setFieldError }) => {
       console.log('values: ', values);
@@ -68,153 +126,49 @@ function Registration() {
   });
 
   return (
-    <div className="h-screen place-content-center ">
-      <Card className=" w-fit p-5 border-2 border-black  drop-shadow-2xl mx-auto mt-10 ">
-        <Typography variant="h4">Register</Typography>
-        <form
-          className="mt-8 mb-2 grid grid-cols-3  gap-3  "
-          onSubmit={formik.handleSubmit}
-          encType="multipart/form-data"
-        >
-          <div className="">
-            <label className="block mb-1">User Type</label>
-            <Select
-              className=" !border !border-gray-500 bg-white ring-2 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-              labelProps={{
-                className: 'hidden before:content-none after:content-none',
-              }}
-              name="userType"
-              value={formik.values.userType}
-              onChange={(val) => formik.setFieldValue('userType', val)}
-            >
-              <Option value="user">User</Option>
-              <Option value="admin">Admin</Option>
-              <Option value="admin">Mentor</Option>
-            </Select>
-            {formik.touched.userType && formik.errors.userType && (
-              <p className="text-red-400 text-sm">{formik.errors.userType}</p>
-            )}
-          </div>
-          <div className="">
-            <label className="block mb-1">Username</label>
-            <Input
-              className=" !border !border-gray-500 bg-white ring-2 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-              labelProps={{
-                className: 'hidden before:content-none after:content-none',
-              }}
-              name="userName"
-              value={formik.values.userName}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.userName && formik.errors.userName && (
-              <p className="text-red-400 text-sm">{formik.errors.userName}</p>
-            )}
-          </div>
-          <div className="">
-            <label className="block mb-1">First Name</label>
-            <Input
-              className=" !border !border-gray-500 bg-white ring-2 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-              labelProps={{
-                className: 'hidden before:content-none after:content-none',
-              }}
-              name="firstName"
-              value={formik.values.firstName}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.firstName && formik.errors.firstName && (
-              <p className="text-red-400 text-sm">{formik.errors.firstName}</p>
-            )}
-          </div>
-          <div className="">
-            <label className="block mb-1">Last Name</label>
-            <Input
-              className=" !border !border-gray-500 bg-white ring-2 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-              labelProps={{
-                className: 'hidden before:content-none after:content-none',
-              }}
-              name="lastName"
-              value={formik.values.lastName}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.lastName && formik.errors.lastName && (
-              <p className="text-red-400 text-sm">{formik.errors.lastName}</p>
-            )}
-          </div>
-          <div className="">
-            <label className="block mb-1">Email</label>
-            <Input
-              className=" !border !border-gray-500 bg-white ring-2 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-              labelProps={{
-                className: 'hidden before:content-none after:content-none',
-              }}
-              name="email"
-              type="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.email && formik.errors.email && (
-              <p className="text-red-400 text-sm">{formik.errors.email}</p>
-            )}
-          </div>
-          <div className="">
-            <label className="block mb-1">Phone</label>
-            <Input
-              className=" !border !border-gray-500 bg-white ring-2 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-              labelProps={{
-                className: 'hidden before:content-none after:content-none',
-              }}
-              name="phone"
-              value={formik.values.phone}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.phone && formik.errors.phone && (
-              <p className="text-red-400 text-sm">{formik.errors.phone}</p>
-            )}
-          </div>
-          <div className="">
-            <label className="block mb-1">Password</label>
-            <Input
-              className=" !border !border-gray-500 bg-white ring-2 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-              labelProps={{
-                className: 'hidden before:content-none after:content-none',
-              }}
-              name="password"
-              type="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.password && formik.errors.password && (
-              <p className="text-red-400 text-sm">{formik.errors.password}</p>
-            )}
-          </div>
-          <div className=" col-span-3 flex items-center">
-            <Checkbox
-              name="acceptTerms"
-              checked={formik.values.acceptTerms}
-              onChange={formik.handleChange}
-            />
-            <label className="ml-2">I accept the Terms and Conditions</label>
-            {formik.touched.acceptTerms && formik.errors.acceptTerms && (
-              <p className="text-red-400 text-sm">
-                {formik.errors.acceptTerms}
-              </p>
-            )}
-          </div>
-          <Button type="submit" className="" disabled={formik.isSubmitting}>
-            {formik.isSubmitting ? 'Registering...' : 'Register'}
-          </Button>
-          {formik.errors.general && (
-            <p className="text-red-400 text-sm self-center font-semibold">
-              {formik.errors.general}
-            </p>
-          )}
-        </form>
+    <div
+      className={` min-h-screen place-content-center bg-teal-200 bg-gradient-to-tr from-[#085078] to-[#267871]   text-black bg-("../../assets/register_page_img.jpg") `}
+    >
+      <Card className=" w-[70%] bg-white/100 p-5 flex flex-row gap-4  border border-teal-900  drop-shadow-2xl mx-auto">
+        <div className="image-div w-2/5 rounded-2xl overflow-hidden">
+          <img
+            src={register_page_img}
+            alt="registration_image"
+            className="w-full h-full object-cover select-none"
+            onLoad={() => console.log('Image loaded')}
+          />
+        </div>
+        <div className="form-div p-8 flex-1  text-black">
+          <h2 className="text-4xl font-bold">Create an account</h2>
+          <p className="mt-2">
+            Already have an account?
+            <Link to={'/login'} className="ml-2 text-teal-400 underline ">
+              Log in
+            </Link>
+          </p>
+          <form
+            className={`mt-8`}
+            onSubmit={formik.handleSubmit}
+            encType="multipart/form-data"
+          >
+            <FieldBuilder formik={formik} fields={fields} />
+            <div className={`col-span-2 relative mt-2 h-12`}>
+              <Button
+                type="submit"
+                className="w-full h-full"
+                disabled={formik.isSubmitting}
+                color="teal"
+              >
+                {formik.isSubmitting ? 'Registering...' : 'Register'}
+              </Button>
+              {formik.errors.general && (
+                <p className="text-red-400 text-base absolute -bottom-8 left-1 ">
+                  {formik.errors.general}
+                </p>
+              )}
+            </div>
+          </form>
+        </div>
       </Card>
     </div>
   );

@@ -15,18 +15,34 @@ import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../store/auth.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import FieldsBuilder from '../../components/Core/FieldBuilder/index.jsx';
+
+const fields = [
+  {
+    label: 'Email ID',
+    name: 'email',
+    type: 'email',
+  },
+  {
+    label: 'Password',
+    name: 'password',
+    type: 'password',
+  },
+  {
+    label: (
+      <p>
+        I agree to the
+        <a className="">Terms and Conditions</a>
+      </p>
+    ),
+    name: 'acceptTerms',
+    type: 'checkbox',
+  },
+];
 
 function Login() {
-  const [showPassword, setShowPassword] = useState(false);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setIsLogin(true);
-  //   navigate("/home");
-  // };
 
   const formik = useFormik({
     initialValues: {
@@ -38,7 +54,9 @@ function Login() {
       email: Yup.string()
         .email('Invalid email address')
         .required('Email is required'),
-      password: Yup.string().required('Password is required'),
+      password: Yup.string()
+        .required('Password is required')
+        .min(8, 'Password must be at least 8 characters'),
       acceptTerms: Yup.boolean()
         .oneOf([true], 'You must accept the terms and conditions')
         .required('Required'),
@@ -87,108 +105,26 @@ function Login() {
         Welcome to Aspirationtrail
       </Typography>
       <form
-        className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+        className="mt-4 mb-2 w-80 max-w-screen-lg sm:w-96"
         onSubmit={formik.handleSubmit}
       >
-        <div className="mb-1 flex flex-col gap-6">
-          <div>
-            <p className="mb-1">Username</p>
-            <Input
-              type="email"
-              size="lg"
-              placeholder="example@email.com"
-              className=" !border !border-gray-500 bg-white ring-2 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-              labelProps={{
-                className: 'hidden before:content-none after:content-none',
-              }}
-              name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.email && formik.errors.email ? (
-              <p className="text-red-400 text-sm">{formik.errors.email}</p>
-            ) : null}
-          </div>
-          <div>
-            <p className="mb-1">Password</p>
-            <div className="relative w-full">
-              <Input
-                type={showPassword ? 'text' : 'password'}
-                size="lg"
-                placeholder="********"
-                className=" !border !border-gray-500 bg-white ring-2 ring-transparent placeholder:text-gray-500 placeholder:opacity-100 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-                labelProps={{
-                  className: ' hidden before:content-none after:content-none',
-                }}
-                name="password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 flex items-center px-2"
-                onMouseDown={() => setShowPassword(true)}
-                onMouseUp={() => setShowPassword(false)}
-                onMouseLeave={() => setShowPassword(false)}
-              >
-                {showPassword ? (
-                  <FontAwesomeIcon icon={faEyeSlash} />
-                ) : (
-                  <FontAwesomeIcon icon={faEye} />
-                )}
-              </button>
-            </div>
-            {formik.touched.password && formik.errors.password ? (
-              <p className="text-red-400 text-sm">{formik.errors.password}</p>
-            ) : null}
-          </div>
+        <FieldsBuilder formik={formik} fields={fields} columnsCount={1} />
+        <div className={`col-span-2 relative mt-2 h-12`}>
+          <Button
+            loading={formik.isSubmitting}
+            type="submit"
+            className="w-full h-full"
+            disabled={formik.isSubmitting}
+            color="teal"
+          >
+            {formik.isSubmitting ? 'Registering...' : 'Register'}
+          </Button>
+          {formik.errors.general && (
+            <p className="text-red-400 text-base absolute -bottom-8 left-1 ">
+              {formik.errors.general}
+            </p>
+          )}
         </div>
-        <Checkbox
-          label={
-            <Typography
-              variant="small"
-              color="gray"
-              className="flex items-center font-normal"
-            >
-              I agree the
-              <a
-                href="#"
-                className="font-medium transition-colors hover:text-gray-900"
-              >
-                &nbsp;Terms and Conditions
-              </a>
-            </Typography>
-          }
-          containerProps={{ className: '-ml-2.5' }}
-          name="acceptTerms"
-          checked={formik.values.acceptTerms}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-        />
-        {formik.touched.acceptTerms && formik.errors.acceptTerms ? (
-          <p className="text-red-400 text-sm">{formik.errors.acceptTerms}</p>
-        ) : null}
-        {formik.errors.general && (
-          <p className="text-red-400 text-sm">{formik.errors.general}</p>
-        )}
-        <Button
-          loading={formik.isSubmitting}
-          type="submit"
-          className="mt-6 justify-center"
-          variant="gradient"
-          fullWidth
-          disabled={formik.isSubmitting}
-        >
-          {formik.isSubmitting ? 'Logging in...' : 'Login'}
-        </Button>
-        {/* <Typography color="gray" className="mt-4 text-center font-normal">
-          Already have an account?{" "}
-          <Link to="/registration" className="font-medium text-gray-900">
-            Sign up
-          </Link>
-        </Typography> */}
       </form>
     </Card>
   );

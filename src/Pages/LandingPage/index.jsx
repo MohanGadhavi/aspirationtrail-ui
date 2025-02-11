@@ -1,35 +1,37 @@
-import React from "react";
-import ContactForm from "../../components/ContactForm";
-import StatCard from "../../components/StatCard";
-import { Button } from "@material-tailwind/react";
-import Header from "../../components/Header";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import ContactForm from '../../components/LandingPage/ContactForm';
+import StatCard from '../../components/LandingPage/StatCard';
+import { Button } from '@material-tailwind/react';
+import Header from '../../components/LandingPage/Header';
+import { useNavigate } from 'react-router-dom';
+import HowItWorksCard from '../../components/LandingPage/HowItWorksCard';
+import Footer from '../../components/LandingPage/Footer';
 
 const stats = [
-  { number: "15K+", label: "Number of students" },
-  { number: "75%", label: "Percentage of success" },
-  { number: "35", label: "Numbers of questions" },
-  { number: "25+", label: "Number of experts" },
-  { number: "15+", label: "Years of experience" },
+  { number: '15K+', label: 'Number of students' },
+  { number: '75%', label: 'Percentage of success' },
+  { number: '35', label: 'Numbers of questions' },
+  { number: '25+', label: 'Number of experts' },
+  { number: '15+', label: 'Years of experience' },
 ];
 
 const howItWorksSteps = [
   {
-    title: "Sign Up",
+    title: 'Sign Up',
     description:
-      "Montes vivamus curae quisque et primis pretium nullam. Congue dis convallis eget ipsum cubilia ante.",
+      'Montes vivamus curae quisque et primis pretium nullam. Congue dis convallis eget ipsum cubilia ante.',
   },
   {
-    title: "Get access",
-    description: "Access to question bank of over 2000 questions",
+    title: 'Get access',
+    description: 'Access to question bank of over 2000 questions',
   },
   {
-    title: "Practice questions",
+    title: 'Practice questions',
     description:
-      "Prepare for the MLA exam in multiple modes of revision and track your progress with your personalised dashboard",
+      'Prepare for the MLA exam in multiple modes of revision and track your progress with your personalised dashboard',
   },
   {
-    title: "Get Result",
+    title: 'Get Result',
     description:
       "compare your results with your peers' with advanced analytics",
   },
@@ -62,7 +64,7 @@ function LandingPage() {
                 <Button
                   id="joinButton"
                   className="self-start px-14 py-5 mt-24 font-medium text-white bg-teal-800 rounded-[257px] shadow-[0px_6px_17px_rgba(36,93,81,0.25)] max-md:px-5 max-md:mt-10"
-                  onClick={() => navigate("/registration")}
+                  onClick={() => navigate('/registration')}
                 >
                   Join Now
                 </Button>
@@ -109,7 +111,7 @@ function LandingPage() {
             ))}
           </div>
         </div>
-        {/* 
+
         <div className="flex flex-col justify-center items-center self-stretch px-20 py-12 mt-24 w-full bg-teal-800 max-md:px-5 max-md:mt-10 max-md:max-w-full">
           <div className="flex flex-col items-center w-full max-w-[1581px] max-md:max-w-full">
             <h2 className="ml-5 text-4xl font-semibold leading-none text-white">
@@ -126,7 +128,7 @@ function LandingPage() {
               Start Now
             </Button>
           </div>
-        </div> */}
+        </div>
 
         <div className="mt-24 ml-2.5 w-full mx-auto">
           <div className="flex gap-5">
@@ -144,6 +146,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
