@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import api from './utils/api.js';
-import Header from './components/LandingPage/Header.jsx';
 import Login from './Pages/Login/Login.jsx';
 import ProtectedRoute from './Routes/ProtectedRoute.jsx';
 import { loginSuccess, logout } from './store/auth.js';
 import LandingPage from './Pages/LandingPage/index.jsx';
 import Home from './Pages/Home/index.jsx';
 import Registration from './Pages/Registration/Registration.jsx';
+import Mentor from './Pages/Mentor/Mentor.jsx';
 
 const App = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -69,6 +69,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/mentor" element={<Mentor />} />
       </Routes>
     </div>
   );
