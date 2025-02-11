@@ -95,38 +95,42 @@ function Login() {
   });
 
   return (
-    <Card
-      color="transparent"
-      shadow={false}
-      className="w-min absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-5 px-10 bg-gray-100 border-2 border-black flex flex-col items-start drop-shadow-2xl "
+    <div
+      className={` min-h-screen place-content-center bg-teal-200 bg-gradient-to-tr from-[#085078] to-[#267871]   text-black bg-("../../assets/register_page_img.jpg") `}
     >
-      <Typography variant="h4">Log in</Typography>
-      <Typography className="mt-2 font-normal">
-        Welcome to Aspirationtrail
-      </Typography>
-      <form
-        className="mt-4 mb-2 w-80 max-w-screen-lg sm:w-96"
-        onSubmit={formik.handleSubmit}
+      <Card
+        color="transparent"
+        shadow={false}
+        className="w-min absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-5 px-10 bg-gray-100 border-2 border-black flex flex-col items-start drop-shadow-2xl "
       >
-        <FieldsBuilder formik={formik} fields={fields} columnsCount={1} />
-        <div className={`col-span-2 relative mt-2 h-12`}>
-          <Button
-            loading={formik.isSubmitting}
-            type="submit"
-            className="w-full h-full"
-            disabled={formik.isSubmitting}
-            color="teal"
-          >
-            {formik.isSubmitting ? 'Registering...' : 'Register'}
-          </Button>
-          {formik.errors.general && (
-            <p className="text-red-400 text-base absolute -bottom-8 left-1 ">
-              {formik.errors.general}
-            </p>
-          )}
-        </div>
-      </form>
-    </Card>
+        <Typography variant="h4">Log in</Typography>
+        <Typography className="mt-2 font-normal">
+          Welcome to Aspirationtrail
+        </Typography>
+        <form
+          className="mt-4 mb-2 w-80 max-w-screen-lg sm:w-96"
+          onSubmit={formik.handleSubmit}
+        >
+          <FieldsBuilder formik={formik} fields={fields} columnsCount={1} />
+          <div className={`col-span-2 relative mt-2 h-12`}>
+            <Button
+              loading={formik.isSubmitting}
+              type="submit"
+              className="w-full h-full"
+              disabled={formik.isSubmitting}
+              color="teal"
+            >
+              {formik.isSubmitting ? 'Registering...' : 'Register'}
+            </Button>
+            {formik.errors.general && (
+              <p className="text-red-400 text-base absolute -bottom-8 left-1 ">
+                {formik.errors.general}
+              </p>
+            )}
+          </div>
+        </form>
+      </Card>
+    </div>
   );
 }
 
