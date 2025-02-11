@@ -12,16 +12,17 @@ import {
   MenuList,
   MenuItem,
 } from '@material-tailwind/react';
-import {
-  ChevronDownIcon,
-  Bars3Icon,
-  XMarkIcon,
-  ChevronUpIcon,
-} from '@heroicons/react/24/outline';
 import menuData from './menuData.jsx';
 import { useDispatch } from 'react-redux';
 import api from '../../utils/api.js';
 import { logout } from '../../store/auth.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBars,
+  faChevronDown,
+  faChevronUp,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 
 const nestedMenuItems = [
   {
@@ -64,14 +65,14 @@ function NavListOne() {
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
               Career
-              <ChevronDownIcon
-                strokeWidth={2.5}
+              <FontAwesomeIcon
+                icon={faChevronDown}
                 className={`hidden h-3 w-3 transition-transform lg:block ${
                   isMenuOpen ? 'rotate-180' : ''
                 }`}
               />
-              <ChevronDownIcon
-                strokeWidth={2.5}
+              <FontAwesomeIcon
+                icon={faChevronDown}
                 className={`block h-3 w-3 transition-transform lg:hidden ${
                   isMobileMenuOpen ? 'rotate-180' : ''
                 }`}
@@ -90,8 +91,8 @@ function NavListOne() {
             <MenuHandler className="flex items-center justify-between">
               <MenuItem>
                 Various Fileds
-                <ChevronUpIcon
-                  strokeWidth={2.5}
+                <FontAwesomeIcon
+                  icon={faChevronUp}
                   className={`h-3.5 w-3.5 transition-transform ${
                     isMenuOpen ? 'rotate-90' : ''
                   }`}
@@ -116,8 +117,8 @@ function NavListOne() {
             <MenuHandler className="flex items-center justify-between">
               <MenuItem>
                 Figma
-                <ChevronUpIcon
-                  strokeWidth={2.5}
+                <FontAwesomeIcon
+                  icon={faChevronUp}
                   className={`h-3.5 w-3.5 transition-transform ${
                     isMenuOpen ? 'rotate-90' : ''
                   }`}
@@ -161,14 +162,14 @@ function NavListTwo() {
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
               Resources
-              <ChevronDownIcon
-                strokeWidth={2.5}
+              <FontAwesomeIcon
+                icon={faChevronDown}
                 className={`hidden h-3 w-3 transition-transform lg:block ${
                   isMenuOpen ? 'rotate-180' : ''
                 }`}
               />
-              <ChevronDownIcon
-                strokeWidth={2.5}
+              <FontAwesomeIcon
+                icon={faChevronDown}
                 className={`block h-3 w-3 transition-transform lg:hidden ${
                   isMobileMenuOpen ? 'rotate-180' : ''
                 }`}
@@ -213,8 +214,8 @@ function NavListTwo() {
             <MenuHandler className="flex items-center justify-between">
               <MenuItem>
                 Figma
-                <ChevronUpIcon
-                  strokeWidth={2.5}
+                <FontAwesomeIcon
+                  icon={faChevronUp}
                   className={`h-3.5 w-3.5 transition-transform ${
                     isMenuOpen ? 'rotate-90' : ''
                   }`}
@@ -323,9 +324,9 @@ export default function Header() {
           onClick={() => setOpenNav(!openNav)}
         >
           {openNav ? (
-            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+            <FontAwesomeIcon icon={faXmark} className="h-6 w-6" />
           ) : (
-            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+            <FontAwesomeIcon icon={faBars} className="h-6 w-6" />
           )}
         </IconButton>
       </div>

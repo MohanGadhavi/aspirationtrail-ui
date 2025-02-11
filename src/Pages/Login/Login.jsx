@@ -120,7 +120,7 @@ function Login() {
               disabled={formik.isSubmitting}
               color="teal"
             >
-              {formik.isSubmitting ? 'Registering...' : 'Register'}
+              {formik.isSubmitting ? 'Logging...' : 'Login'}
             </Button>
             {formik.errors.general && (
               <p className="text-red-400 text-base absolute -bottom-8 left-1 ">
