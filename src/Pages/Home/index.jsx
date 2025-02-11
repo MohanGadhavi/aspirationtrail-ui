@@ -1,26 +1,24 @@
-import { Button } from "@material-tailwind/react";
-import React from "react";
-import api from "../../utils/api";
-import { useDispatch } from "react-redux";
+import { Button } from '@material-tailwind/react';
+import React from 'react';
+import api from '../../utils/api';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/auth';
 
 function Home() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    try {
-      api
-        .get("/user/logout")
-        .then((res) => {
-          dispatch(logout());
-          localStorage.removeItem("authToken");
-          window.location.href = "/login";
-        })
-        .catch((error) => {
-          console.log("Error while logging out:", error);
-        });
-    } catch (error) {
-      console.error("Error while logging out:", error);
-    }
+    api
+      .get('/user/logout')
+      .then((res) => {
+        console.log('response>>> ', res);
+        dispatch(logout());
+        localStorage.removeItem('authToken');
+        window.location.href = '/';
+      })
+      .catch((error) => {
+        console.log('Error while logging out:', error);
+      });
   };
 
   return (
