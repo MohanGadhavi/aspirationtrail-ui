@@ -60,7 +60,7 @@ function NavListOne() {
         <MenuHandler>
           <Typography as="div" variant="paragraph" className="font-medium">
             <ListItem
-              className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900"
+              className="flex items-center gap-2 py-2 pr-4 font-medium text-white"
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
@@ -157,7 +157,7 @@ function NavListTwo() {
         <MenuHandler>
           <Typography as="div" variant="paragraph" className="font-medium">
             <ListItem
-              className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900"
+              className="flex items-center gap-2 py-2 pr-4 font-medium text-white"
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
@@ -235,36 +235,18 @@ function NavListTwo() {
 }
 function NavList() {
   return (
-    <List className="mb-6 mt-4 p-0 lg:mb-0 lg:mt-0 lg:flex-row lg:p-1">
-      <Typography
-        as="a"
-        href="#"
-        variant="paragraph"
-        color="blue-gray"
-        className="font-medium"
-      >
+    <List className="mb-6 mt-4 p-0 lg:mb-0 lg:mt-0 lg:flex-row lg:p-1 text-white">
+      <Typography as="a" href="#" variant="paragraph" className="font-medium">
         <ListItem className="flex items-center gap-2 py-2 pr-4">About</ListItem>
       </Typography>
       <NavListOne />
       <NavListTwo />
-      <Typography
-        as="a"
-        href="#"
-        variant="paragraph"
-        color="blue-gray"
-        className="font-medium"
-      >
+      <Typography as="a" href="#" variant="paragraph" className="font-medium">
         <ListItem className="flex items-center gap-2 py-2 pr-4">
           Mentor
         </ListItem>
       </Typography>
-      <Typography
-        as="a"
-        href="#"
-        variant="paragraph"
-        color="blue-gray"
-        className="font-medium"
-      >
+      <Typography as="a" href="#" variant="paragraph" className="font-medium">
         <ListItem className="flex items-center gap-2 py-2 pr-4">Docs</ListItem>
       </Typography>
     </List>
@@ -300,8 +282,8 @@ export default function Header() {
   }, []);
 
   return (
-    <nav className="px-4 py-2">
-      <div className="flex items-center justify-between text-blue-gray-900">
+    <nav className="px-4 py-2 bg-white/20">
+      <div className="flex items-center justify-between text-blue-gray-100">
         <Typography
           as="a"
           href="#"
@@ -314,7 +296,12 @@ export default function Header() {
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          <Button variant="outlined" size="sm" onClick={handleLogout}>
+          <Button
+            variant="outlined"
+            color="white"
+            size="sm"
+            onClick={handleLogout}
+          >
             Log out
           </Button>
         </div>
@@ -333,7 +320,13 @@ export default function Header() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button variant="outlined" size="sm" fullWidth onClick={handleLogout}>
+          <Button
+            variant="outlined"
+            size="sm"
+            color="white"
+            fullWidth
+            onClick={handleLogout}
+          >
             Log out
           </Button>
         </div>
